@@ -1,0 +1,13 @@
+print("hello")
+x= 5
+y= 4
+print (x + y)
+
+#y wont this work
+
+#still tryna figure out
+
+
+z= 56
+
+print (x + z)
