@@ -1,0 +1,99 @@
+ScreenManager:
+    screen_manager : screen_manager
+    email: email
+    password: passw
+    id: screen_manager
+    Screen:
+        name: "startscreen"
+        FloatLayout:
+            orientation: "vertical"
+
+            MDTextField:
+                id: email
+                multiline: False
+                size_hint: 0.4, None
+                pos_hint: {"x": 0.3, "top": 0.5}
+                hint_text: "Email"
+                required: True
+
+
+            MDTextField:
+                id: passw
+                multiline: False
+                size_hint: 0.4, None
+                password: True
+                pos_hint: {"x": 0.3, "top":0.4}
+                hint_text: "Password"
+                required: True
+
+            MDFlatButton:
+                text: "Log In"
+                size_hint: 0.3, 0.1
+                pos_hint: {"x": 0.35, "top": 0.3}
+                on_release:
+                    app.login()
+
+            MDFlatButton:
+                text: "GP"
+                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                on_release:
+                    root.screen_manager.current= "gpscreen"
+                    root.screen_manager.transition.direction = "left"
+
+            MDFlatButton:
+                text: "Admin"
+                pos_hint: {"center_x": 0.3, "center_y": 0.1}
+                on_release:
+                    root.screen_manager.current= "adminscreen"
+                    root.screen_manager.transition.direction = "left"
+
+            MDFlatButton:
+                text: "Patient"
+                pos_hint: {"center_x": 0.7, "center_y": 0.1}
+                on_release:
+                    root.screen_manager.current= "patientscreen"
+                    root.screen_manager.transition.direction = "left"
+
+    Screen:
+        name: "gpscreen"
+        BoxLayout:
+            orientation: "vertical"
+            MDLabel:
+                text: "gp screen"
+                halign: "center"
+
+            MDFlatButton:
+                text: "Back"
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                on_release:
+                    root.screen_manager.current= "startscreen"
+                    root.screen_manager.transition.direction = "right"
+
+    Screen:
+        name: "adminscreen"
+        BoxLayout:
+            orientation: "vertical"
+            MDLabel:
+                text: "admin screen"
+                halign: "center"
+
+            MDFlatButton:
+                text: "Back"
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                on_release:
+                    root.screen_manager.current= "startscreen"
+                    root.screen_manager.transition.direction = "right"
+    Screen:
+        name: "patientscreen"
+        BoxLayout:
+            orientation: "vertical"
+            MDLabel:
+                text: "patient screen"
+                halign: "center"
+
+            MDFlatButton:
+                text: "Back"
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                on_release:
+                    root.screen_manager.current= "startscreen"
+                    root.screen_manager.transition.direction = "right"
