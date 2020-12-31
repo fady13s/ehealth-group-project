@@ -16,12 +16,12 @@ MyLayout:
                 Label:
                     text: "Welcome"
                     pos_hint: {"x": 0, "top": 1.2}
-                    color: 0/255, 48/255, 135/255, 1
+                    color: 0/255, 114/255, 206/255, 1
                     font_size: 80
                 Label:
                     text: "to the UCLH GP App"
                     pos_hint: {"x": 0, "top": 1.1}
-                    color: 0/255, 48/255, 135/255, 1
+                    color: 0/255, 114/255, 206/255, 1
                     font_size: 25
 
                 MDTextField:
@@ -58,6 +58,7 @@ MyLayout:
                 elevation: 10
                 title: "GP Screen"
                 left_action_items: [["menu", lambda x: gp_nav_drawer.set_state("open")]]
+                right_action_items: [["logout", lambda x: root.logout()]]
 
             NavigationLayout:
                 ScreenManager:
@@ -74,24 +75,34 @@ MyLayout:
                             text: "Calendar Screen"
                             halign: "center"
 
-            MDNavigationDrawer:
-                id: gp_nav_drawer
-                GPContentNavigationDrawer:
-                    gp_screen_manager: gp_screen_manager
-                    gp_nav_drawer: gp_nav_drawer
+                MDNavigationDrawer:
+                    id: gp_nav_drawer
+                    BoxLayout:
+                        orientation: "vertical"
 
-                    ScrollView:
-                        MDList:
-                            OneLineListItem:
-                                text: "Calendar"
-                                on_press:
-                                    gp_nav_drawer.set_state("close")
-                                    gp_screen_manager.current = "calendarscreen"
-                            OneLineListItem:
-                                text: "Patients"
-                                on_press:
-                                    gp_nav_drawer.set_state("close")
-                                    gp_screen_manager.current = "patientscreen"
+                        Image:
+                            source: "UCLH logo2.jpg"
+                            size_hint_x: "0.7"
+                            pos_hint: {"center_x": 0.5, "top": 1}
+
+                        ScrollView:
+                            MDList:
+                                OneLineListItem:
+                                    text: "Calendar"
+                                    on_press:
+                                        gp_nav_drawer.set_state("close")
+                                        gp_screen_manager.current = "calendarscreen"
+                                OneLineListItem:
+                                    text: "Patients"
+                                    on_press:
+                                        gp_nav_drawer.set_state("close")
+                                        gp_screen_manager.current = "patientscreen"
+
+
+                        GPContentNavigationDrawer:
+                            gp_screen_manager: gp_screen_manager
+                            gp_nav_drawer: gp_nav_drawer
+
 
             MDFlatButton:
                 text: "Back"
@@ -110,6 +121,7 @@ MyLayout:
                 elevation: 10
                 title: "Admin Screen"
                 left_action_items: [["menu", lambda x: admin_nav_drawer.set_state("open")]]
+                right_action_items: [["logout", lambda x: root.logout()]]
 
             NavigationLayout:
                 ScreenManager:
@@ -125,24 +137,32 @@ MyLayout:
                             text: "Patient List"
                             halign: "center"
 
-            MDNavigationDrawer:
-                id: admin_nav_drawer
-                AdminContentNavigationDrawer:
-                    admin_screen_manager: admin_screen_manager
-                    admin_nav_drawer: admin_nav_drawer
+                MDNavigationDrawer:
+                    id: admin_nav_drawer
+                    BoxLayout:
+                        orientation: "vertical"
 
-                    ScrollView:
-                        MDList:
-                            OneLineListItem:
-                                text: "GP List"
-                                on_press:
-                                    admin_nav_drawer.set_state("close")
-                                    admin_screen_manager.current = "gplist"
-                            OneLineListItem:
-                                text: "Patient List"
-                                on_press:
-                                    admin_nav_drawer.set_state("close")
-                                    admin_screen_manager.current = "patientlist"
+                        Image:
+                            source: "UCLH logo2.jpg"
+                            size_hint_x: "0.7"
+                            pos_hint: {"center_x": 0.5, "top": 1}
+
+                        ScrollView:
+                            MDList:
+                                OneLineListItem:
+                                    text: "GP List"
+                                    on_press:
+                                        admin_nav_drawer.set_state("close")
+                                        admin_screen_manager.current = "gplist"
+                                OneLineListItem:
+                                    text: "Patient List"
+                                    on_press:
+                                        admin_nav_drawer.set_state("close")
+                                        admin_screen_manager.current = "patientlist"
+
+                        AdminContentNavigationDrawer:
+                            admin_screen_manager: admin_screen_manager
+                            admin_nav_drawer: admin_nav_drawer
 
             MDFlatButton:
                 text: "Back"
@@ -160,6 +180,7 @@ MyLayout:
                 elevation: 10
                 title: "Patient Screen"
                 left_action_items: [["menu", lambda x: patient_nav_drawer.set_state("open")]]
+                right_action_items: [["logout", lambda x: root.logout()]]
 
             NavigationLayout:
                 ScreenManager:
@@ -181,29 +202,38 @@ MyLayout:
                             text: "My Appointments"
                             halign: "center"
 
-            MDNavigationDrawer:
-                id: patient_nav_drawer
-                PatientContentNavigationDrawer:
-                    patient_screen_manager: patient_screen_manager
-                    patient_nav_drawer: patient_nav_drawer
+                MDNavigationDrawer:
+                    id: patient_nav_drawer
+                    BoxLayout:
+                        orientation: "vertical"
 
-                    ScrollView:
-                        MDList:
-                            OneLineListItem:
-                                text: "My Info"
-                                on_press:
-                                    patient_nav_drawer.set_state("close")
-                                    patient_screen_manager.current = "myinfoscreen"
-                            OneLineListItem:
-                                text: "My History"
-                                on_press:
-                                    patient_nav_drawer.set_state("close")
-                                    patient_screen_manager.current = "myhistoryscreen"
-                            OneLineListItem:
-                                text: "My Appointments"
-                                on_press:
-                                    patient_nav_drawer.set_state("close")
-                                    patient_screen_manager.current = "myappointmentscreen"
+                        Image:
+                            source: "UCLH logo2.jpg"
+                            size_hint_x: "0.7"
+                            pos_hint: {"center_x": 0.5, "top": 1}
+
+                        ScrollView:
+                            MDList:
+                                OneLineListItem:
+                                    text: "My Info"
+                                    on_press:
+                                        patient_nav_drawer.set_state("close")
+                                        patient_screen_manager.current = "myinfoscreen"
+                                OneLineListItem:
+                                    text: "My History"
+                                    on_press:
+                                        patient_nav_drawer.set_state("close")
+                                        patient_screen_manager.current = "myhistoryscreen"
+                                OneLineListItem:
+                                    text: "My Appointments"
+                                    on_press:
+                                        patient_nav_drawer.set_state("close")
+                                        patient_screen_manager.current = "myappointmentscreen"
+
+
+                        PatientContentNavigationDrawer:
+                            patient_screen_manager: patient_screen_manager
+                            patient_nav_drawer: patient_nav_drawer
 
             MDFlatButton:
                 text: "Back"
