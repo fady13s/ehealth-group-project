@@ -68,6 +68,10 @@ class MyLayout(BoxLayout):
         else:
             wrongusernamedialog.open()
 
+    def logout(self):
+        self.screen_manager.current = "startscreen"
+        self.screen_manager.transition.direction = "right"
+
 # creating navigation drawer class for GP
 class GPContentNavigationDrawer(BoxLayout):
     gp_screen_manager = ObjectProperty()
