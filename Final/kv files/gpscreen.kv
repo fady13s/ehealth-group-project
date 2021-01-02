@@ -1,0 +1,53 @@
+<GPScreen@Screen>:
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        title: "GP Screen"
+        left_action_items: [["menu", lambda x: gp_nav_drawer.set_state("open")]]
+        right_action_items: [["logout", lambda x: app.logout()]]
+
+    NavigationLayout:
+        ScreenManager:
+            id: gp_screen_manager
+            name: "gp_screen_manager"
+
+            Screen:
+                name: "patientscreen"
+                MDLabel:
+                    text: "Patient Screen"
+                    halign: "center"
+            Screen:
+                name: "calendarscreen"
+                MDLabel:
+                    text: "Calendar Screen"
+                    halign: "center"
+
+        MDNavigationDrawer:
+            id: gp_nav_drawer
+            BoxLayout:
+                orientation: "vertical"
+
+                Image:
+                    source: "UCLH logo2.jpg"
+                    size_hint_x: "0.7"
+                    pos_hint: {"center_x": 0.5, "top": 1}
+
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            text: "Calendar"
+                            on_press:
+                                gp_nav_drawer.set_state("close")
+                                gp_screen_manager.current = "calendarscreen"
+                        OneLineListItem:
+                            text: "Patients"
+                            on_press:
+                                gp_nav_drawer.set_state("close")
+                                gp_screen_manager.current= "patientscreen"
+
+    MDFlatButton:
+        text: "Back"
+        pos_hint: {"center_x": 0.5, "center_y": 0.1}
+        on_release:
+            app.logout()

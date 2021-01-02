@@ -1,0 +1,40 @@
+<LogInScreen@Screen>:
+    email: email
+    password: passw
+    FloatLayout:
+        orientation: "vertical"
+
+        Label:
+            text: "Welcome"
+            pos_hint: {"x": 0, "top": 1.2}
+            color: 0/255, 114/255, 206/255, 1
+            font_size: 80
+        Label:
+            text: "to the UCLH GP App"
+            pos_hint: {"x": 0, "top": 1.1}
+            color: 0/255, 114/255, 206/255, 1
+            font_size: 25
+
+        MDTextField:
+            id: email
+            multiline: False
+            size_hint: 0.4, None
+            pos_hint: {"x": 0.3, "top": 0.5}
+            hint_text: "Email"
+            required: True
+
+        MDTextField:
+            id: passw
+            multiline: False
+            size_hint: 0.4, None
+            password: True
+            pos_hint: {"x": 0.3, "top":0.4}
+            hint_text: "Password"
+            required: True
+
+        MDFlatButton:
+            text: "Log In"
+            size_hint: 0.3, 0.1
+            pos_hint: {"x": 0.35, "top": 0.3}
+            on_release:
+                app.login()

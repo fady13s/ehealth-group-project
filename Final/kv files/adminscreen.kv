@@ -1,0 +1,53 @@
+<AdminScreen@Screen>:
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        title: "Admin Screen"
+        left_action_items: [["menu", lambda x: admin_nav_drawer.set_state("open")]]
+        right_action_items: [["logout", lambda x: app.logout()]]
+
+    NavigationLayout:
+        ScreenManager:
+            id: admin_screen_manager
+            name: "admin_screen_manager"
+
+            Screen:
+                name: "gplist"
+                MDLabel:
+                    text: "GP List"
+                    halign: "center"
+            Screen:
+                name: "patientlist"
+                MDLabel:
+                    text: "Patient List"
+                    halign: "center"
+
+        MDNavigationDrawer:
+            id: admin_nav_drawer
+            BoxLayout:
+                orientation: "vertical"
+
+                Image:
+                    source: "UCLH logo2.jpg"
+                    size_hint_x: "0.7"
+                    pos_hint: {"center_x": 0.5, "top": 1}
+
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            text: "GP List"
+                            on_press:
+                                admin_nav_drawer.set_state("close")
+                                admin_screen_manager.current = "gplist"
+                        OneLineListItem:
+                            text: "Patient List"
+                            on_press:
+                                admin_nav_drawer.set_state("close")
+                                admin_screen_manager.current = "patientlist"
+
+    MDFlatButton:
+        text: "Back"
+        pos_hint: {"center_x": 0.5, "center_y": 0.1}
+        on_release:
+            app.logout()

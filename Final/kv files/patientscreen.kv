@@ -1,0 +1,64 @@
+<PatientScreen@Screen>:
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        title: "Patient Screen"
+        left_action_items: [["menu", lambda x: patient_nav_drawer.set_state("open")]]
+        right_action_items: [["logout", lambda x: app.logout()]]
+
+    NavigationLayout:
+        ScreenManager:
+            id: patient_screen_manager
+            name: "patient_screen_manager"
+
+            Screen:
+                name: "myinfoscreen"
+                MDLabel:
+                    text: "My info"
+                    halign: "center"
+            Screen:
+                name: "myhistoryscreen"
+                MDLabel:
+                    text: "My History"
+                    halign: "center"
+            Screen:
+                name: "myappointmentscreen"
+                MDLabel:
+                    text: "My Appointments"
+                    halign: "center"
+
+        MDNavigationDrawer:
+            id: patient_nav_drawer
+            BoxLayout:
+                orientation: "vertical"
+
+                Image:
+                    source: "UCLH logo2.jpg"
+                    size_hint_x: "0.7"
+                    pos_hint: {"center_x": 0.5, "top": 1}
+
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            text: "My Info"
+                            on_press:
+                                patient_nav_drawer.set_state("close")
+                                patient_screen_manager.current = "myinfoscreen"
+                        OneLineListItem:
+                            text: "My History"
+                            on_press:
+                                patient_nav_drawer.set_state("close")
+                                patient_screen_manager.current = "myhistoryscreen"
+                        OneLineListItem:
+                            text: "My Appointments"
+                            on_press:
+                                patient_nav_drawer.set_state("close")
+                                patient_screen_manager.current = "myappointmentscreen"
+
+    MDFlatButton:
+        text: "Back"
+        pos_hint: {"center_x": 0.5, "center_y": 0.1}
+        on_release:
+            root.screen_manager.current= "startscreen"
+            root.screen_manager.transition.direction = "right"

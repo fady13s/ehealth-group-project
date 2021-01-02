@@ -1,0 +1,22 @@
+#:include kv files\loginscreen.kv
+#:include kv files\gpscreen.kv
+#:include kv files\adminscreen.kv
+#:include kv files\patientscreen.kv
+
+
+BoxLayout:
+    screen_manager:screen_manager
+    ScreenManager:
+        id: screen_manager
+        LogInScreen:
+            name: "login_screen"
+            id: login_screen
+        GPScreen:
+            name: "gp_screen"
+            id: gp_screen
+        AdminScreen:
+            name: "admin_screen"
+            id: admin_screen
+        PatientScreen:
+            name: "patient_screen"
+            id: patient_screen
